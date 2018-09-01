@@ -3,6 +3,7 @@ package Group3.seshealthpatient.Activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +25,7 @@ import Group3.seshealthpatient.Fragments.MapFragment;
 import Group3.seshealthpatient.Fragments.PatientInformationFragment;
 import Group3.seshealthpatient.Fragments.RecordVideoFragment;
 import Group3.seshealthpatient.Fragments.SendFileFragment;
+import Group3.seshealthpatient.Activities.HeartRateMonitor;
 import Group3.seshealthpatient.R;
 
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
      * what I mean with this later in this code.
      */
     private enum MenuStates {
-        PATIENT_INFO, DATA_PACKET, HEARTRATE, RECORD_VIDEO, SEND_FILE, NAVIGATION_MAP
+        PATIENT_INFO, DATA_PACKET, HEARTRATE, RECORD_VIDEO, SEND_FILE, NAVIGATION_MAP, HEARTRATEMONITOR
     }
 
     /**
@@ -152,6 +154,13 @@ public class MainActivity extends AppCompatActivity {
                                 if (currentState != MenuStates.NAVIGATION_MAP) {
                                     ChangeFragment(new MapFragment());
                                     currentState = MenuStates.NAVIGATION_MAP;
+                                }
+                            case R.id.nav_heartratemonitor:
+                                if (currentState != MenuStates.HEARTRATEMONITOR) {
+                                    // Start a new activity
+                                    Intent intent = new Intent(MainActivity.this, HeartRateMonitor.class);
+                                    startActivity(intent);
+                                    currentState = MenuStates.HEARTRATEMONITOR;
                                 }
                                 break;
                         }
